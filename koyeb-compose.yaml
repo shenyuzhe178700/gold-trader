@@ -1,0 +1,12 @@
+name: gold-trader
+services:
+  - name: api
+    type: web
+    build:
+      dockerfile: Dockerfile
+    ports:
+      - port: 5000
+        protocol: http
+    env:
+      - key: DEEPSEEK_API_KEY
+        value: sk-dc8c8c092a7d4b67af037f4f9de38c4f

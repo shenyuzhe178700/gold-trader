@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#0d1117">
+    <title>Gold Trader - AI黄金短线交易分析</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🥇</text></svg>">
+</head>
+<body>
+    <div class="header">
+        <div class="header-title">
+            <span class="icon">🥇</span> Gold Trader
+        </div>
+        <div class="header-status">
+            <span class="status-dot" id="status-dot"></span>
+            <span class="status-text" id="status-text">就绪</span>
+            <span style="margin-left:8px;font-size:11px;color:var(--text-muted);" id="update-time"></span>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- 服务器配置 -->
+        <div class="card" id="config-card">
+            <div class="card-header">
+                <span>⚙️ 服务器连接</span>
+            </div>
+            <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;">
+                <input type="text" id="server-url" placeholder="后端服务器地址" 
+                       style="flex:1;min-width:180px;padding:8px;border-radius:6px;border:1px solid var(--border);
+                              background:var(--bg-primary);color:var(--text-primary);font-size:13px;">
+                <button class="btn btn-primary" id="btn-connect">🔗 连接</button>
+            </div>
+            <div style="font-size:11px;color:var(--text-muted);margin-top:6px;" id="server-hint">
+                输入后端地址，如 https://xxx.onrender.com
+            </div>
+        </div>
+
+        <div class="action-bar">
+            <button class="btn btn-primary" id="btn-refresh">🔄 刷新分析</button>
+            <button class="btn btn-outline" id="btn-auto">▶ 自动刷新</button>
+        </div>
+
+        <div class="price-card gold-theme" id="price-card">
+            <div class="loading"><div class="spinner"></div></div>
+        </div>
+
+        <div class="signal-card neutral" id="signal-card">
+            <div class="loading"><div class="spinner"></div></div>
+        </div>
+
+        <!-- AI分析面板 -->
+        <div class="card" id="ai-panel" style="border-color: rgba(88,166,255,0.3);">
+            <div class="card-header">
+                <span>🤖 AI量化分析 <span style="font-size:10px;color:var(--text-muted);">DeepSeek</span></span>
+                <span style="font-size:11px;color:var(--text-muted);" id="ai-status">需配置API Key</span>
+            </div>
+            <div id="ai-content">
+                <div class="empty-state" id="ai-empty">
+                    <div class="icon">🔑</div>
+                    <div>在后端服务器配置DeepSeek API Key</div>
+                    <div style="margin-top:8px;">
+                        <input type="password" id="api-key-input" placeholder="输入 DeepSeek API Key 发送到服务器" 
+                               style="width:80%;max-width:300px;padding:8px;border-radius:6px;border:1px solid var(--border);
+                                      background:var(--bg-primary);color:var(--text-primary);font-size:13px;margin-right:6px;">
+                        <button class="btn btn-primary" id="btn-config-llm" style="margin-top:6px;">⚡ 启用AI</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header"><span>📊 技术指标面板</span></div>
+            <div class="indicators-grid" id="indicators-grid">
+                <div class="loading"><div class="spinner"></div></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header"><span>🌐 关联市场</span></div>
+            <div id="markets-list">
+                <div class="loading"><div class="spinner"></div></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header"><span>🔍 多维信号详情</span></div>
+            <div id="signals-detail">
+                <div class="loading"><div class="spinner"></div></div>
+            </div>
+        </div>
+
+        <div style="text-align:center;padding:20px;font-size:11px;color:var(--text-muted);">
+            ⚠️ 本工具仅供分析参考，不构成投资建议<br>
+            数据来源: Yahoo Finance · 短线周期: 1小时内 · AI: DeepSeek
+        </div>
+    </div>
+
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

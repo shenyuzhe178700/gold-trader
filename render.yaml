@@ -1,0 +1,14 @@
+﻿# Gold Trader - Render Deployment
+
+services:
+  - type: web
+    name: gold-trader-api
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python app.py
+    envVars:
+      - key: DEEPSEEK_API_KEY
+        sync: false
+      - key: FLASK_ENV
+        value: production
